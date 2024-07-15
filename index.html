@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Home</title>
+    <script src="scripts/fetch.js" type="module" defer></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        scroll-behavior: smooth;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .home {
+        position: relative;
+        width: 100%;
+        justify-content: space-between;
+        height: 100vh;
+        background: url('assets/backgr.png') no-repeat;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        padding: 70px 10% 0;
+    }
+
+    .home-content {
+        max-width: 600px;
+    }
+
+    .home-content h3 {
+        font-size: 32px;
+        font-weight: 700;
+        opacity: 0;
+        animation: slideBottom 1s ease forwards;
+        animation-delay: .7s;
+    }
+
+    .home-content h1 {
+        font-size: 56px;
+        font-weight: 700;
+        margin: -3px 0;
+        opacity: 0;
+        animation: slideRight 1s ease forwards;
+        animation-delay: 1s;
+    }
+
+    .home-content h3:nth-of-type(2) {
+        margin-bottom: 30px;
+        animation: slideTop 1s ease forwards;
+        animation-delay: .7s;
+    }
+
+    .home-content h3 span {
+        color: #0ef;
+    }
+
+    .home-content p {
+        font-size: 20px;
+        opacity: 0;
+        animation: slideLeft 1s ease forwards;
+        animation-delay: 1s;
+    }
+
+    .home-sci {
+        display: flex;
+        margin-top: 30px;
+    }
+
+    .home-sci a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+        border: 2px solid #0ef;
+        text-decoration: none;
+        margin-right: 15px;
+        transition: .5s ease;
+    }
+
+    .home-sci a img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .home-sci a:hover {
+        background: #0ef;
+        color: #081b29;
+        box-shadow: 0 0 20px #0ef;
+    }
+
+    .btn-box {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 10px 20px;
+        background-color: #0ef;
+        color: #081b29;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn-box:hover {
+        background-color: #081b29;
+        color: #0ef;
+    }
+
+    /* About Section */
+    .about {
+        margin-top: -70px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        gap: 1.5rem;
+        padding: 70px 10%;
+    }
+
+    .about-img img {
+        margin-left: 70px;
+        margin-top: 15px;
+        max-width: 100%vh;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .about-text h2 {
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+
+    .about-text h2 span {
+        color: #0ef;
+    }
+
+    .about-text h4 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .about-text p {
+        font-size: 18px;
+        margin-bottom: 40px;
+        text-align: justify;
+    }
+
+    .btn-box {
+        display: inline-block;
+        padding: 12px 28px;
+        background: #0ef;
+        border-radius: 40px;
+        font-size: 16px;
+        color: #081b29;
+        letter-spacing: 1px;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: 0 0 5px #0ef, 0 0 25px #0ef;
+        opacity: 0;
+        animation: slideTop 1s ease forwards;
+        animation-delay: 2s;
+    }
+
+    .btn-box:hover {
+        box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 100px cyan, 0 0 200px cyan;
+    }
+
+    #services {
+        color: rgb(0, 0, 0);
+        font-size: 20px;
+        line-height: 1.4;
+        margin-bottom: 4rem;
+    }
+
+    .sub-title {
+        text-align: center;
+        font-size: 60px;
+        padding-bottom: 4rem;
+
+
+    }
+
+    .sub-title {
+        text-align: center;
+        font-size: 60px;
+        padding-bottom: 70px;
+
+
+    }
+
+    .sub-title span {
+        color: #0ef;
+
+
+    }
+
+    .container {
+        padding: 90px;
+    }
+
+    .services-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(259px, 1fr));
+        grid-gap: 40px;
+        margin-top: 50px;
+    }
+
+    .services-list div {
+        background-color: transparent;
+        padding: 40px;
+        font-size: 13px;
+        font-weight: 13px;
+        border-right: 10px;
+        transition: background 0.5s, transform 0.5s;
+        box-shadow: 1px 1px 20px #012290f7,
+            1px 1px 40px #0053b8f7;
+    }
+
+    .services-list div image {
+        font-size: 50px;
+        margin-bottom: 30px;
+    }
+
+    .services-list div h2 {
+        font-size: 30px;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+
+    .services-list div a {
+        text-decoration: none;
+        color: #000000;
+        font-size: 12px;
+        margin-top: 20px;
+        display: inline-block;
+    }
+
+    .read {
+        display: inline-block;
+        padding: 12px 28px;
+        background: #0ef;
+        border-radius: 40px;
+        font-size: 16px;
+        color: #000000;
+        letter-spacing: 1px;
+        text-decoration: none;
+        opacity: 0;
+        animation: slideTop 1s ease forwards;
+        animation-delay: 2s;
+        box-shadow: 0 0 5px #0ef,
+            0 0 25px #0ef;
+    }
+
+    .read:hover {
+        box-shadow: 0 0 5px cyan,
+            0 0 25px cyan, 0 0 50px cyan, 00 100px cyan, 0 0 200px cyan;
+    }
+
+    .services-list div:hover {
+        transform: translateY(-10px);
+    }
+
+    .skills-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 50px;
+        gap: 50px;
+    }
+
+    .heading {
+        margin-top: -50px;
+        font-size: 24px;
+        margin-bottom: 40px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #333;
+        position: relative;
+    }
+
+    .heading::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 4px;
+        background: #0ef;
+        margin: 8px auto 0;
+    }
+
+    .technical-bars .bar {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .technical-bars .icon {
+        width: 35px;
+        height: 35px;
+        margin-right: 10px;
+    }
+
+    .technical-bars .info {
+        flex-grow: 0;
+        width: 100px;
+        /* Ensure the text span has consistent space */
+        margin-right: 20px;
+    }
+
+    .technical-bars .progress-line {
+        background: #ddd;
+        border-radius: 20px;
+        overflow: hidden;
+        height: 8px;
+        width: 200px;
+        position: relative;
+    }
+
+    .technical-bars .progress-line span {
+        display: block;
+        height: 100%;
+        background: #0ef;
+        position: absolute;
+    }
+
+    .progress-line.html span {
+        width: 90%;
+    }
+
+    .progress-line.css span {
+        width: 60%;
+    }
+
+    .progress-line.javascript span {
+        width: 85%;
+    }
+
+    .progress-line.python span {
+        width: 50%;
+    }
+
+    .progress-line.react span {
+        width: 75%;
+    }
+
+    .radial-bars {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .radial-bar {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin: 20px;
+    }
+
+    .radial-bar svg {
+        transform: rotate(-90deg);
+        width: 100px;
+        height: 100px;
+    }
+
+    .radial-bar .progress-bar {
+        fill: none;
+        stroke: #ddd;
+        stroke-width: 10;
+    }
+
+    .radial-bar .path {
+        fill: none;
+        stroke-width: 10;
+        stroke-linecap: round;
+        stroke-dasharray: 251;
+        stroke-dashoffset: 251;
+        transition: stroke-dashoffset 1s ease;
+    }
+
+    .radial-bar .path-1 {
+        stroke: #0ef;
+        stroke-dashoffset: calc(251 - (251 * 90) / 100);
+    }
+
+    .radial-bar .path-2 {
+        stroke: #0ef;
+        stroke-dashoffset: calc(251 - (251 * 85) / 100);
+    }
+
+    .radial-bar .path-3 {
+        stroke: #0ef;
+        stroke-dashoffset: calc(251 - (251 * 75) / 100);
+    }
+
+    .radial-bar .path-4 {
+        stroke: #0ef;
+        stroke-dashoffset: calc(251 - (251 * 85) / 100);
+    }
+
+    .radial-bar .percentage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .radial-bar .text {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+
+    /* Animations */
+    @keyframes animate-path1 {
+        100% {
+            stroke-dashoffset: 50;
+        }
+    }
+
+    @keyframes animate-path2 {
+        100% {
+            stroke-dashoffset: 175;
+        }
+    }
+
+    @keyframes animate-path3 {
+        100% {
+            stroke-dashoffset: 125;
+        }
+    }
+
+    @keyframes animate-path4 {
+        100% {
+            stroke-dashoffset: 75;
+        }
+    }
+
+    @keyframes animate-bar {
+        100% {
+            stroke-dashoffset: -1;
+        }
+    }
+
+    @keyframes showText {
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes animate {
+        100% {
+            transform: scaleX(1);
+        }
+    }
+
+    @keyframes slideTop {
+        0% {
+            transform: translateY(100px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideRight {
+        0% {
+            transform: translateX(-100px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateX(0px);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideBottom {
+        0% {
+            transform: translateY(-100px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideLeft {
+        0% {
+            transform: translateY(-100px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
+
+    .latest-projects {
+        margin-top: -50px;
+        padding: 50px;
+        text-align: center;
+    }
+
+    .projects-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .project-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 300px;
+        transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .project-card img {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-content {
+        padding: 20px;
+    }
+
+    .contact {
+        padding: 50px;
+        text-align: center;
+        background-color: #ffffff;
+    }
+
+    .contact-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .contact-form {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #0ef;
+        outline: none;
+    }
+
+    .btn-box {
+        display: inline-block;
+        padding: 12px 28px;
+        background: #0ef;
+        border-radius: 40px;
+        font-size: 16px;
+        color: #081b29;
+        letter-spacing: 1px;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: 0 0 5px #0ef, 0 0 25px #0ef;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn-box:hover {
+        background-color: #081b29;
+        color: #0ef;
+        box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 100px cyan, 0 0 200px cyan;
+    }
+
+    .section-subtitle {
+        font-size: 18px;
+        margin-bottom: 30px;
+        color: #666;
+    }
+
+    /* ADDITIONAL */
+    /* Button and link hover effects */
+    .btn-box,
+    .read,
+    .home-sci a {
+        transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn-box:hover,
+    .read:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(14, 240, 255, 0.6);
+    }
+
+    .home-sci a:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px #0ef, 0 0 40px #0ef inset;
+    }
+
+    /* Fade in animation for all text content */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    p,
+    h2,
+    h3,
+    h4,
+    .section-subtitle {
+        opacity: 0;
+        animation: fadeIn 1.5s ease-out forwards;
+        animation-delay: 0.5s;
+    }
+
+    /* Apply this class to elements you want to animate */
+    .animated {
+        visibility: hidden;
+        animation-name: fadeIn;
+        animation-fill-mode: forwards;
+        animation-duration: 1s;
+        animation-delay: 0.3s;
+        /* Adjust based on scroll position */
+    }
+
+    /* SVG icon enhancements */
+    .icon {
+        transition: fill 0.3s ease;
+    }
+
+    .icon:hover {
+        fill: #0ef;
+        /* Change fill color on hover */
+    }
+
+    /* Responsive grid adjustments */
+    .services-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .about {
+            grid-template-columns: 1fr;
+            padding: 40px;
+        }
+    }
+
+    /* Basic Responsive Adjustments */
+    @media (max-width: 768px) {
+        .main {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .home {
+            padding: 20px;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .home-content h1,
+        .home-content h3 {
+            text-align: center;
+        }
+
+        .home-content,
+        .about-img,
+        .about-text,
+        .services,
+        .skills-container,
+        .latest-projects,
+        .contact {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .about {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .services-list {
+            grid-template-columns: 1fr;
+            padding: 0;
+        }
+
+        .technical-bars,
+        .radial-bars {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .project-card {
+            width: 90%;
+        }
+
+        .btn-box,
+        .read {
+            width: auto;
+            margin-top: 20px;
+        }
+    }
+
+    /* Additional Responsive Enhancements */
+    @media (max-width: 480px) {
+        .sub-title {
+            font-size: 24px;
+            padding: 20px;
+        }
+
+        .heading {
+            font-size: 20px;
+        }
+
+        .home-content h1 {
+            font-size: 28px;
+        }
+
+        .home-content h3 {
+            font-size: 18px;
+        }
+
+        .about-text p,
+        .services-list div p {
+            font-size: 14px;
+        }
+    }
+
+    .feedback-message {
+        color: green;
+        display: none;
+        /* Hidden by default */
+    }
+
+    .error-message {
+        color: red;
+        display: none;
+        /* Hidden by default */
+    }
+</style>
+
+<body>
+    <header id="header"> </header>
+
+    <main class="main">
+        <section class="home">
+            <div class="home-content">
+                <h3> Hello, It's me</h3>
+                <h1>James Ald</h1>
+                <h3> And I'm a <span class="text"> </span> </h3>
+                <p> A professional web designer with an experience of over 1 year.</p>
+                <br> Expertise is to create and design web, Frontend design and Backend desgin, and Develop overall
+                website.
+                <div class="home-sci">
+                    <a href="https://web.facebook.com/itsjamesthetics" style="--i:5"><img src="assets/facebook.png"
+                            alt="Facebook"></a>
+                    <a href="https://www.instagram.com/itsjamesthetics" style="--i:6"><img src="assets/instagram.png"
+                            alt="Instagram"></a>
+                    <a href="https://github.com/itsjamesthetics" style="--i:7"><img src="assets/github.png"
+                            alt="Twitter"></a>
+                </div>
+                <a href="#about" class="btn-box"> More About Me </a>
+            </div>
+            <span class="home-imgHover"></span>
+        </section>
+
+        <section class="about" id="about">
+            <div class="about-img">
+                <img src="assets/fprofile.png">
+            </div>
+            <div class="about-text">
+                <h2> About <span> Me </span></h2>
+                <h4> Full Stack Developer </h4>
+                <p> I'm a skilled web designer with 1 year of experience, currently in my junior years as a computer
+                    science
+                    student. My journey in web design began out of a passion for blending aesthetics with functionality,
+                    leading me to develop captivating website designs that align with the latest trends in the
+                    digitalworld.
+                    My primary focus is on front-end development, where I strive to maximize the visual impact of
+                    websites. I blend modern design principles with user-centric approaches, ensuring that each website
+                    is not only visually appealing but also intuitive and user-friendly.</p>
+                <a href="#services" class="btn-box"> More About Me </a>
+            </div>
+        </section>
+
+        <section>
+            <div class="services" id="services">
+                <div class="container">
+                    <h1 class="sub-title"> My <span> Services </span></h1>
+                    <div class="services-list">
+                        <div>
+                            <img src="assets/code.png" alt="Code Icon"
+                                style="width: 30px; height: 30px; color:#00eeff;">
+                            <h2> UI/UX Design</h2>
+                            <p> As a UI/UX designer, I bring a wealth of expertise and a deep passion for crafting
+                                intuitive, user-centered digital experiences. My journey in the UI/UX domain has been
+                                marked by a relentless pursuit of excellence, where I've honed my skills in visual
+                                design, user research, interaction design, and prototype engineering to create
+                                interfaces that are not only visually appealing but also functionally seamless. </p>
+                            <a href="#" class="read"> learn more. </a>
+                        </div>
+
+                        <div>
+                            <img src="assets/crop.png" alt="Code Icon"
+                                style="width: 30px; height: 30px; color:#00eeff;">
+                            <h2> Software Developer</h2>
+                            <p> I specialize in creating efficient and scalable software systems. My expertise
+                                encompasses a broad range of programming languages and frameworks, including Java,
+                                Python, .NET, and JavaScript, as well as a keen understanding of modern development
+                                methodologies embedded languages. </p>
+                            <a href="#" class="read"> learn more. </a>
+                        </div>
+
+                        <div>
+                            <img src="assets/mobileapp.png" alt="Code Icon"
+                                style="width: 30px; height: 30px; color:#00eeff;">
+                            <h2> Mobile App Dev</h2>
+                            <p> My technical proficiency includes a solid command of Android Studio and Java, as well as
+                                experience with the Firebase Database, enabling me to build applications with strong and
+                                scalable architectures. I am also skilled in utilizing these tech stack to ensure that
+                                the applications I develop not only meet functional requirements but also excel in
+                                quality and user satisfaction. </p>
+                            <a href="#" class="read"> learn more. </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h1 class="sub-title"> My <span> Skills</span></h1>
+        <section class="skills" id="skills">
+            <div class="skills-container">
+                <div class="technical-skills">
+                    <h1 class="heading">Technical Skills</h1>
+                    <div class="technical-bars">
+                        <div class="bar">
+                            <img src="assets/ht.png" alt="HTML5" class="icon">
+                            <div class="info">
+                                <span>HTML</span>
+                            </div>
+                            <div class="progress-line html">
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="bar">
+                            <img src="assets/cs.png" alt="CSS" class="icon">
+                            <div class="info">
+                                <span>CSS</span>
+                            </div>
+                            <div class="progress-line css">
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="bar">
+                            <img src="assets/javas.png" alt="JavaScript" class="icon">
+                            <div class="info">
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="progress-line javascript">
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="bar">
+                            <img src="assets/py.png" alt="Python" class="icon">
+                            <div class="info">
+                                <span>Python</span>
+                            </div>
+                            <div class="progress-line python">
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="bar">
+                            <img src="assets/rea.png" alt="ReactJS" class="icon">
+                            <div class="info">
+                                <span>ReactJS</span>
+                            </div>
+                            <div class="progress-line react">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="professional-skills">
+                    <h1 class="heading">Professional Skills</h1>
+                    <div class="radial-bars">
+                        <div class="radial-bar">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="progress-bar" cx="50" cy="50" r="40"></circle>
+                                <circle class="path path-1" cx="50" cy="50" r="40"></circle>
+                            </svg>
+                            <div class="percentage">90%</div>
+                            <div class="text">Creativity</div>
+                        </div>
+                        <div class="radial-bar">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="progress-bar" cx="50" cy="50" r="40"></circle>
+                                <circle class="path path-2" cx="50" cy="50" r="40"></circle>
+                            </svg>
+                            <div class="percentage">85%</div>
+                            <div class="text">Communication</div>
+                        </div>
+                        <div class="radial-bar">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="progress-bar" cx="50" cy="50" r="40"></circle>
+                                <circle class="path path-3" cx="50" cy="50" r="40"></circle>
+                            </svg>
+                            <div class="percentage">75%</div>
+                            <div class="text">Problem Solving</div>
+                        </div>
+                        <div class="radial-bar">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="progress-bar" cx="50" cy="50" r="40"></circle>
+                                <circle class="path path-4" cx="50" cy="50" r="40"></circle>
+                            </svg>
+                            <div class="percentage">85%</div>
+                            <div class="text">Teamwork</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h1 class="sub-title"> Lastest <span> Projects </span></h1>
+        <section class="latest-projects" id="latest-projects">
+            <div class="projects-container">
+                <div class="project-card">
+                    <img src="assets/webdev.jpg" alt="Web Developement">
+                    <div class="card-content">
+                        <h2>Web Development</h2>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="assets/mobile.png" alt="Mobile App Development">
+                    <div class="card-content">
+                        <h2>Mobile App Development</h2>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="assets/dataanal.jpg" alt="Data Analysis">
+                    <div class="card-content">
+                        <h2>Data Analysis</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="contact" id="contact">
+            <h1 class="sub-title">Get in <span>Touch</span></h1>
+            <p class="section-subtitle">Explore our Help Docs or contact the Developer.</p>
+            <div class="contact-container">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="button" onclick="validateAndClearForm()" class="btn-box">Send Message</button>
+                    <div class="feedback-message" id="feedback-message">Feedback Sent!</div>
+                    <div class="error-message" id="error-message">Please fill all fields!</div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer id="footer"> </footer>
+    <script>
+        function validateAndClearForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Check if any field is empty
+            if (name === '' || email === '' || message === '') {
+                // Show error message
+                const errorMessage = document.getElementById('error-message');
+                errorMessage.style.display = 'block';
+
+                // Hide error message after 4 seconds
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 4000);
+            } else {
+                // Clear form fields
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('message').value = '';
+
+                // Show feedback message
+                const feedbackMessage = document.getElementById('feedback-message');
+                feedbackMessage.style.display = 'block';
+
+                // Hide feedback message after 4 seconds
+                setTimeout(() => {
+                    feedbackMessage.style.display = 'none';
+                }, 4000);
+            }
+        }
+    </script>
+</body>
+
+</html>
