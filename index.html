@@ -7,6 +7,15 @@
     <title>Portfolio - Home</title>
     <script src="scripts/fetch.js" type="module" defer></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "0JGk_TZlJvt67E94M",
+        });
+    })();
+    </script>
 </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -17,6 +26,7 @@
         padding: 0;
         font-family: 'Poppins', sans-serif;
         scroll-behavior: smooth;
+        box-sizing: border-box;
     }
 
     .main {
@@ -25,12 +35,12 @@
         align-items: center;
     }
 
+    /* Home Section */
     .home {
         position: relative;
         width: 100%;
         justify-content: space-between;
         height: 100vh;
-        background: url('assets/backgr.png') no-repeat;
         background-size: cover;
         background-position: center;
         display: flex;
@@ -81,7 +91,7 @@
         margin-top: 30px;
     }
 
-    .home-sci a {
+    .home-sci .social-link {
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -94,16 +104,34 @@
         transition: .5s ease;
     }
 
-    .home-sci a img {
+    .home-sci .social-img {
         width: 100%;
         height: auto;
         display: block;
     }
 
-    .home-sci a:hover {
+    .home-sci .social-link:hover {
         background: #0ef;
         color: #081b29;
         box-shadow: 0 0 20px #0ef;
+    }
+
+    .home-imgHover {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .home-imgHover .profile-img {
+        width: 550px; 
+        height: 550px;
+        object-fit: cover;
+        border: 5px solid #fff;
+        transition: transform 0.3s ease;
+    }
+
+    .home-imgHover .profile-img:hover {
+        transform: scale(1.1);
     }
 
     .btn-box {
@@ -122,6 +150,45 @@
         color: #0ef;
     }
 
+    @media (max-width: 768px) {
+    .home {
+        flex-direction: column;
+        padding: 20px;
+        height: auto;
+        text-align: center;
+    }
+
+    .home-content {
+        max-width: 100%;
+    }
+
+    .home-content h3 {
+        font-size: 24px;
+    }
+
+    .home-content h1 {
+        font-size: 36px;
+    }
+
+    .home-content p {
+        font-size: 16px;
+    }
+
+    .home-imgHover .profile-img {
+        width: 300px;
+        height: 300px;
+        margin-top: 20px;
+    }
+
+    .home-sci {
+        justify-content: center;
+    }
+
+    .btn-box {
+        margin-top: 20px;
+    }
+    }
+
     /* About Section */
     .about {
         margin-top: -70px;
@@ -138,6 +205,7 @@
         max-width: 100%vh;
         height: auto;
         border-radius: 8px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease; 
     }
 
     .about-text h2 {
@@ -180,6 +248,47 @@
         box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 100px cyan, 0 0 200px cyan;
     }
 
+    .about-img img:hover {
+    transform: scale(1.05); 
+}
+
+    /* Mobile adjustments for About Section */
+    @media (max-width: 768px) {
+    .about {
+        grid-template-columns: 1fr; /* Stack elements vertically */
+        text-align: center;
+        padding: 50px 5%; /* Reduce padding */
+    }
+
+    .about-img {
+        margin: 0 auto; /* Center the image */
+    }
+
+    .about-img img {
+        margin-left: 0;
+        width: 100%; /* Make the image responsive */
+        max-width: 300px; /* Limit the max width for mobile */
+    }
+
+    .about-text h2 {
+        font-size: 32px;
+    }
+
+    .about-text h4 {
+        font-size: 20px;
+    }
+
+    .about-text p {
+        font-size: 16px;
+    }
+
+    .btn-box {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    }
+
+    /* Services Section */
     #services {
         color: rgb(0, 0, 0);
         font-size: 20px;
@@ -190,27 +299,15 @@
     .sub-title {
         text-align: center;
         font-size: 60px;
-        padding-bottom: 4rem;
-
-
-    }
-
-    .sub-title {
-        text-align: center;
-        font-size: 60px;
         padding-bottom: 70px;
-
-
     }
 
     .sub-title span {
         color: #0ef;
-
-
     }
 
     .container {
-        padding: 90px;
+        padding: 50px 20px; /* Reduce padding for mobile responsiveness */
     }
 
     .services-list {
@@ -224,14 +321,19 @@
         background-color: transparent;
         padding: 40px;
         font-size: 13px;
-        font-weight: 13px;
-        border-right: 10px;
+        font-weight: 500; /* Corrected font-weight */
+        border-right: 10px solid transparent; /* Ensure this works as expected */
         transition: background 0.5s, transform 0.5s;
-        box-shadow: 1px 1px 20px #012290f7,
-            1px 1px 40px #0053b8f7;
+        box-shadow: 1px 1px 20px #012290f7, 1px 1px 40px #0053b8f7;
+        opacity: 1; /* You can animate opacity changes on hover */
     }
 
-    .services-list div image {
+    .services-list div:hover {
+        transform: translateY(-10px);
+        opacity: 0.9;
+    }
+
+    .services-list div img {
         font-size: 50px;
         margin-bottom: 30px;
     }
@@ -262,20 +364,50 @@
         opacity: 0;
         animation: slideTop 1s ease forwards;
         animation-delay: 2s;
-        box-shadow: 0 0 5px #0ef,
-            0 0 25px #0ef;
+        box-shadow: 0 0 5px #0ef, 0 0 25px #0ef;
     }
 
     .read:hover {
-        box-shadow: 0 0 5px cyan,
-            0 0 25px cyan, 0 0 50px cyan, 00 100px cyan, 0 0 200px cyan;
+        box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 100px cyan, 0 0 200px cyan;
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+        .sub-title {
+            font-size: 40px;
+            padding-bottom: 50px;
+        }
+
+        .container {
+            padding: 30px 10px; /* Reduced padding for smaller screens */
+        }
+
+        .services-list {
+            grid-template-columns: 1fr; /* Stacks services vertically on mobile */
+            grid-gap: 20px; /* Adjust grid gap for smaller screens */
+        }
+
+        .services-list div {
+            padding: 20px; /* Reduced padding on mobile */
+        }
+
+        .services-list div h2 {
+            font-size: 24px; /* Smaller font size for headers */
+        }
+
+        .read {
+            font-size: 14px; /* Smaller button font size on mobile */
+            padding: 10px 20px; /* Reduced button padding */
+        }
     }
 
     .services-list div:hover {
         transform: translateY(-10px);
     }
 
+    /* Skills Section */
     .skills-container {
+        margin-top: 20px;
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
@@ -302,10 +434,11 @@
         margin: 8px auto 0;
     }
 
+    /* Technical Bars */
     .technical-bars .bar {
         display: flex;
         align-items: center;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
 
     .technical-bars .icon {
@@ -317,7 +450,6 @@
     .technical-bars .info {
         flex-grow: 0;
         width: 100px;
-        /* Ensure the text span has consistent space */
         margin-right: 20px;
     }
 
@@ -326,7 +458,7 @@
         border-radius: 20px;
         overflow: hidden;
         height: 8px;
-        width: 200px;
+        width: 200px; /* Consider changing to percentage for responsiveness */
         position: relative;
     }
 
@@ -357,6 +489,7 @@
         width: 75%;
     }
 
+    /* Radial Bars */
     .radial-bars {
         display: flex;
         flex-wrap: wrap;
@@ -427,6 +560,50 @@
         font-weight: 600;
     }
 
+    /* Media Query for Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .skills-container {
+            flex-direction: column;
+            gap: 30px; /* Reduce gap for smaller screens */
+            padding: 20px; /* Reduce padding for smaller screens */
+        }
+
+        .heading {
+            font-size: 20px;
+        }
+
+        .technical-bars .progress-line {
+            width: 100%; /* Make the progress bar responsive */
+        }
+
+        .technical-bars .info {
+            width: auto; /* Allow text to scale with screen size */
+            margin-right: 10px;
+        }
+
+        .radial-bars {
+            justify-content: center; /* Center the radial bars */
+        }
+
+        .radial-bar {
+            margin: 10px;
+            width: 100px;
+            height: 100px; /* Reduce size of radial bars for mobile */
+        }
+
+        .radial-bar svg {
+            width: 80px;
+            height: 80px;
+        }
+
+        .radial-bar .percentage {
+            font-size: 16px;
+        }
+
+        .radial-bar .text {
+            font-size: 12px;
+        }
+    }
 
     /* Animations */
     @keyframes animate-path1 {
@@ -519,6 +696,7 @@
         }
     }
 
+    /* Latest Projects Section */
     .latest-projects {
         margin-top: -50px;
         padding: 50px;
@@ -529,6 +707,7 @@
         display: flex;
         justify-content: center;
         gap: 20px;
+        flex-wrap: wrap; /* Ensures wrapping on smaller screens */
     }
 
     .project-card {
@@ -553,6 +732,7 @@
         padding: 20px;
     }
 
+    /* Contact Section */
     .contact {
         padding: 50px;
         text-align: center;
@@ -629,8 +809,50 @@
         color: #666;
     }
 
+    .error-message {
+    color: red;
+    display: none; /* Assumes this is hidden by default */
+    margin-top: 15px; /* Adds the margin you want */
+    }
+
+    .feedback-message {
+        color: green;
+        display: none;
+        margin-top: 15px;
+    }
+
+    /* Media Query for Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .projects-container {
+            flex-direction: column;
+            gap: 20px; /* Adjust gap for smaller screens */
+        }
+
+        .project-card {
+            width: 100%; /* Allow project cards to take full width on mobile */
+            margin-bottom: 20px;
+        }
+
+        .latest-projects {
+            padding: 20px; /* Reduce padding for mobile */
+        }
+
+        .contact {
+            padding: 20px;
+        }
+
+        .contact-form {
+            width: 100%;
+            max-width: 100%; /* Ensure contact form takes full width */
+        }
+
+        .btn-box {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+    }
+
     /* ADDITIONAL */
-    /* Button and link hover effects */
     .btn-box,
     .read,
     .home-sci a {
@@ -688,7 +910,6 @@
 
     .icon:hover {
         fill: #0ef;
-        /* Change fill color on hover */
     }
 
     /* Responsive grid adjustments */
@@ -705,98 +926,14 @@
         }
     }
 
-    /* Basic Responsive Adjustments */
-    @media (max-width: 768px) {
-        .main {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .home {
-            padding: 20px;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .home-content h1,
-        .home-content h3 {
-            text-align: center;
-        }
-
-        .home-content,
-        .about-img,
-        .about-text,
-        .services,
-        .skills-container,
-        .latest-projects,
-        .contact {
-            width: 100%;
-            padding: 20px;
-        }
-
-        .about {
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .services-list {
-            grid-template-columns: 1fr;
-            padding: 0;
-        }
-
-        .technical-bars,
-        .radial-bars {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .project-card {
-            width: 90%;
-        }
-
-        .btn-box,
-        .read {
-            width: auto;
-            margin-top: 20px;
-        }
-    }
-
-    /* Additional Responsive Enhancements */
-    @media (max-width: 480px) {
-        .sub-title {
-            font-size: 24px;
-            padding: 20px;
-        }
-
-        .heading {
-            font-size: 20px;
-        }
-
-        .home-content h1 {
-            font-size: 28px;
-        }
-
-        .home-content h3 {
-            font-size: 18px;
-        }
-
-        .about-text p,
-        .services-list div p {
-            font-size: 14px;
-        }
-    }
-
     .feedback-message {
         color: green;
         display: none;
-        /* Hidden by default */
     }
 
     .error-message {
         color: red;
         display: none;
-        /* Hidden by default */
     }
 </style>
 
@@ -808,26 +945,31 @@
             <div class="home-content">
                 <h3> Hello, It's me</h3>
                 <h1>James Ald</h1>
-                <h3> And I'm a <span class="text"> </span> </h3>
+                <h3> And I'm a <span class="text">Fullstack Developer</span> </h3>
                 <p> A professional web designer with an experience of over 1 year.</p>
-                <br> Expertise is to create and design web, Frontend design and Backend desgin, and Develop overall
-                website.
+                <p> Expertise is to create and design web, Frontend design and Backend design, and Develop overall website.</p>
+        
                 <div class="home-sci">
-                    <a href="https://web.facebook.com/itsjamesthetics" style="--i:5"><img src="assets/facebook.png"
-                            alt="Facebook"></a>
-                    <a href="https://www.instagram.com/itsjamesthetics" style="--i:6"><img src="assets/instagram.png"
-                            alt="Instagram"></a>
-                    <a href="https://github.com/itsjamesthetics" style="--i:7"><img src="assets/github.png"
-                            alt="Twitter"></a>
+                    <a href="https://web.facebook.com/itsjamesthetics" style="--i:5" class="social-link">
+                        <img src="assets/facebook.png" alt="Facebook" class="social-img"/>
+                    </a>
+                    <a href="https://www.instagram.com/itsjamesthetics" style="--i:6" class="social-link">
+                        <img src="assets/instagram.png" alt="Instagram" class="social-img"/>
+                    </a>
+                    <a href="https://github.com/itsjamesthetics" style="--i:7" class="social-link">
+                        <img src="assets/github.png" alt="Github" class="social-img"/>
+                    </a>
                 </div>
                 <a href="#about" class="btn-box"> More About Me </a>
             </div>
-            <span class="home-imgHover"></span>
+            <div class="home-imgHover">
+                <img src="assets/profsr.png" alt="Profile Image" class="profile-img">
+            </div>
         </section>
 
         <section class="about" id="about">
             <div class="about-img">
-                <img src="assets/fprofile.png">
+                <img src="assets/profsr.png">
             </div>
             <div class="about-text">
                 <h2> About <span> Me </span></h2>
@@ -1049,21 +1191,49 @@
                     errorMessage.style.display = 'none';
                 }, 4000);
             } else {
-                // Clear form fields
-                document.getElementById('name').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('message').value = '';
+                // Prepare EmailJS form data
+                const formData = {
+                    name: name,
+                    email: email,
+                    message: message
+                };
 
-                // Show feedback message
-                const feedbackMessage = document.getElementById('feedback-message');
-                feedbackMessage.style.display = 'block';
+                // Send email using EmailJS
+                emailjs.send('service_jgx8dwr', 'template_8pr2q6j', formData)
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
 
-                // Hide feedback message after 4 seconds
-                setTimeout(() => {
-                    feedbackMessage.style.display = 'none';
-                }, 4000);
+                        // Show feedback message upon successful submission
+                        const feedbackMessage = document.getElementById('feedback-message');
+                        feedbackMessage.style.display = 'block';
+
+                        // Clear form fields
+                        document.getElementById('name').value = '';
+                        document.getElementById('email').value = '';
+                        document.getElementById('message').value = '';
+
+                        // Hide feedback message after 4 seconds
+                        setTimeout(() => {
+                            feedbackMessage.style.display = 'none';
+                        }, 4000);
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                        // You can add additional error handling here if needed
+                    });
             }
         }
+
+        const animatedElements = document.querySelectorAll('.animated');
+        window.addEventListener('scroll', () => {
+            animatedElements.forEach((element) => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementPosition < windowHeight - 100) {
+                    element.style.visibility = 'visible';
+                    element.classList.add('fadeIn');
+                }
+            });
+        });
     </script>
 </body>
 
