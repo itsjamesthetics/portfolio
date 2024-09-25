@@ -15,11 +15,19 @@ fetch('header.html')
         document.getElementById('header').innerHTML = html;
         console.log("Header loaded successfully");
 
-        // Now that the header is loaded, attach the event listener
-        document.getElementById("user-logo").onclick = function() {
-            var submenu = document.getElementById("subMenu");
-            submenu.classList.toggle('open-menu');
-        };
+        // Now you can still add any event listeners for elements that exist
+        const hamburger = document.getElementById("hamburger");
+        const navigation = document.querySelector('.navigation');
+
+        // Add event listener for the hamburger menu toggle
+        if (hamburger && navigation) {
+            hamburger.addEventListener('click', function () {
+                hamburger.classList.toggle('active');
+                navigation.classList.toggle('active');
+            });
+        } else {
+            console.error('Hamburger or navigation element not found.');
+        }
     })
     .catch(error => console.error('Error loading the header:', error));
 
