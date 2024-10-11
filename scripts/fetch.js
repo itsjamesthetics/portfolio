@@ -1,13 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var typed = new Typed(".text", {
-        strings: ["Fullstack Developer", "Gamer", "Tech Hustler"],
-        typeSpeed: 100,
-        backSpeed: 100,
-        backDelay: 1000,
-        loop: true
-    });
-});
-
 // Fetch and inject the header
 fetch('header.html')
     .then(response => response.text())
